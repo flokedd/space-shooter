@@ -22,13 +22,17 @@ while running:
     keys = pygame.key.get_pressed()
     
     if keys[pygame.K_w]:
-        player.move(0, -1)
+        if player.rect.top > 0:
+            player.move(0, -1)
     if keys[pygame.K_s]:
-        player.move(0, 1)
+        if player.rect.bottom < screen.get_size()[1]:
+            player.move(0, 1)
     if keys[pygame.K_a]:
-        player.move(-1, 0)
+        if player.rect.left > 0:
+            player.move(-1, 0)
     if keys[pygame.K_d]:
-        player.move(1, 0)
+        if player.rect.right < screen.get_size()[0]:
+            player.move(1, 0)
 
     player.draw()
 
