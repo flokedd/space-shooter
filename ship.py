@@ -7,7 +7,11 @@ class Ship:
         self.size = size
         self.start_pos = start_pos
         self.speed = speed
+        self.bullets = []
         self.rect = pygame.Rect(start_pos[0], start_pos[1], size[0], size[1])
+
+    def shoot(self, bullet):
+        self.bullets.append(bullet)
 
     def move(self, direction_x, direction_y):
         self.rect = self.rect.move(self.speed * direction_x, self.speed * direction_y)

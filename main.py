@@ -1,5 +1,6 @@
 import pygame, os
 from player import Player
+from bullet import Bullet
 
 pygame.init()
 screen = pygame.display.set_mode((800, 700))
@@ -33,6 +34,10 @@ while running:
     if keys[pygame.K_d]:
         if player.rect.right < screen.get_size()[0]:
             player.move(1, 0)
+    
+    if keys[pygame.K_SPACE]:
+        bullet = Bullet(player)
+        player.shoot(bullet)
 
     player.draw()
 
