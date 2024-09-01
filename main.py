@@ -36,9 +36,11 @@ while running:
             player.move(1, 0)
     
     if keys[pygame.K_SPACE]:
-        bullet = Bullet(player)
+        bullet = Bullet(player, (player.rect.x + player.size[0]/2-3.5, player.rect.y), (7, 10))
         player.shoot(bullet)
 
+    for b in player.bullets:
+        b.draw()
     player.draw()
 
     pygame.display.flip()
