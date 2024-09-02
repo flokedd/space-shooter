@@ -8,11 +8,12 @@ class Ship:
         self.start_pos = start_pos
         self.speed = speed
         self.bullets = []
+        self.bullet_delay = 1
         self.last_shot = time.time()
         self.rect = pygame.Rect(start_pos[0], start_pos[1], size[0], size[1])
 
     def shoot(self, bullet):
-        if self.last_shot + 1 < time.time():
+        if self.last_shot + self.bullet_delay < time.time():
             self.bullets.append(bullet)
             self.last_shot = time.time()
 
