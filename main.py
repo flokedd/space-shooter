@@ -1,14 +1,19 @@
-import pygame, os
+import pygame, os, time, random
+from ship import Ship
 from player import Player
 from bullet import Bullet
+from enemy import Enemy
 
 pygame.init()
 screen = pygame.display.set_mode((800, 700))
 clock = pygame.time.Clock()
+last_enemy = time.time()
 player_image = pygame.image.load(os.path.join('assets/ships', 'player-ship.png'))
+enemy_one_image = pygame.image.load(os.path.join('assets/ships', 'enemy-1.png'))
+
+Ship.screen = screen
 
 player = Player(player_image, (35, 42), (screen.get_size()[0]/2-(35/2), screen.get_size()[1]-55), 5)
-player.screen = screen
 
 running = True
 
@@ -39,9 +44,16 @@ while running:
         bullet = Bullet(player, (player.rect.x + player.size[0]/2-3.5, player.rect.y), (7, 10), 5)
         player.shoot(bullet)
 
+    if last_enemy + 2 < time.time():
+        Enemy(enemy_one_image, (42, 32), (random.randint(0, screen.get_size()[0]), 0), 5)
+        last_enemy = time.time()
+
     for b in player.bullets:
         b.move(0, -1)
         b.draw()
+
+    for e in Enemy.enemies:
+        e.draw()
 
     player.draw()
 
