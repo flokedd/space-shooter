@@ -45,7 +45,7 @@ while running:
         player.shoot(bullet)
 
     if last_enemy + 2 < time.time():
-        Enemy(enemy_one_image, (42, 32), (random.randint(0, screen.get_size()[0]), 0), 5)
+        Enemy(enemy_one_image, (42, 32), (random.randint(0, screen.get_size()[0]-42), 0), 5)
         last_enemy = time.time()
 
     for b in player.bullets:
