@@ -53,6 +53,7 @@ while running:
         b.draw()
 
     for e in Enemy.enemies:
+        e.move(0, 1)
         e.draw()
 
     player.draw()
