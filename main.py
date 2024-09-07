@@ -53,6 +53,12 @@ while running:
         b.draw()
 
     for e in Enemy.enemies:
+        if e.last_shot + 1 < time.time():
+            bullet = Bullet(e, (e.rect.x + e.size[0]/2-3.5, e.rect.bottom), (7, 10), 7)
+            e.shoot(bullet)
+        for b in e.bullets:
+            b.move(0, 1)
+            b.draw()
         e.move(0, 1)
         e.draw()
 
