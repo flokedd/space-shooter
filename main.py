@@ -47,20 +47,22 @@ while running:
     if last_enemy + 2 < time.time():
         Enemy(enemy_one_image, (42, 32), (random.randint(0, screen.get_size()[0]-42), 0), 5)
         last_enemy = time.time()
-
-    for b in player.bullets:
-        b.move(0, -1)
-        b.draw()
-
     for e in Enemy.enemies:
         if e.last_shot + 1 < time.time():
             bullet = Bullet(e, (e.rect.x + e.size[0]/2-3.5, e.rect.bottom), (7, 10), 7)
             e.shoot(bullet)
-        for b in e.bullets:
-            b.move(0, 1)
-            b.draw()
         e.move(0, 1)
         e.draw()
+
+    for b in Ship.bullets:
+        if type(b.ship) == Player:
+            collision = b.rect.collidelist(Enemy.enemies)
+            if b.rect.collidelist(Enemy.enemies) != -1:
+                Enemy.enemies.pop(collision)
+            b.move(0, -1)
+        elif type(b.ship) == Enemy:
+            b.move(0, 1)
+        b.draw()
 
     player.draw()
 
