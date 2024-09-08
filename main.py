@@ -57,7 +57,7 @@ while running:
     for b in Ship.bullets:
         if type(b.ship) == Player:
             collision = b.rect.collidelist(Enemy.enemies)
-            if b.rect.collidelist(Enemy.enemies) != -1:
+            if collision != -1:
                 Enemy.enemies.pop(collision)
             b.move(0, -1)
         elif type(b.ship) == Enemy:
