@@ -41,7 +41,7 @@ while running:
             player.move(1, 0)
     
     if keys[pygame.K_SPACE]:
-        bullet = Bullet(player, (player.rect.x + player.size[0]/2-3.5, player.rect.y), (7, 10), 5)
+        bullet = Bullet(player, (player.rect.x + player.size[0]/2-3.5, player.rect.top), (7, 10), 7)
         player.shoot(bullet)
 
     if last_enemy + 2 < time.time():
